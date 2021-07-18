@@ -1,0 +1,9 @@
+sql("
+    create table rooms 
+    (
+        id serial primary key,
+        room_name varchar(50) not null,
+        create_at timestamp,
+        update_at timestamp
+    )
+")

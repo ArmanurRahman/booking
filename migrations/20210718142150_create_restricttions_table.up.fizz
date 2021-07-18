@@ -1,0 +1,9 @@
+sql("
+    create table restrictions 
+    (
+        id serial primary key,
+        restriction_name varchar(50) not null,
+        create_at timestamp,
+        update_at timestamp
+    )
+")

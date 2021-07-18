@@ -1,0 +1,13 @@
+sql("
+    create table users 
+    (
+        id serial primary key,
+        first_name varchar(50) not null,
+        last_name varchar(50) not null,
+        email varchar(100) not null,
+        password varchar(50) not null,
+        access_level int default(1),
+        create_at timestamp,
+        update_at timestamp
+    )
+")
