@@ -1,0 +1,18 @@
+mode: set
+github.com/ArmanurRahman/booking/internal/forms/errors.go:13.44,15.2 1 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:18.42,20.18 2 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:23.2,23.14 1 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:20.18,22.3 1 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:27.56,29.13 2 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:33.2,33.13 1 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:29.13,32.3 2 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:37.74,40.21 2 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:44.2,44.13 1 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:40.21,43.3 2 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:48.38,49.40 1 1
+github.com/ArmanurRahman/booking/internal/forms/errors.go:49.40,51.3 1 1
+github.com/ArmanurRahman/booking/internal/forms/forms.go:15.29,17.2 1 1
+github.com/ArmanurRahman/booking/internal/forms/forms.go:20.33,25.2 1 1
+github.com/ArmanurRahman/booking/internal/forms/forms.go:27.43,28.31 1 1
+github.com/ArmanurRahman/booking/internal/forms/forms.go:28.31,31.37 2 1
+github.com/ArmanurRahman/booking/internal/forms/forms.go:31.37,33.4 1 1

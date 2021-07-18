@@ -22,6 +22,27 @@ var session *scs.SessionManager
 
 func main() {
 
+	err := run()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Starting listining to port ", port)
+	//_ = http.ListenAndServe(port, nil)
+
+	srv := &http.Server{
+		Addr:    port,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func run() error {
 	//what am i put in session
 	gob.Register(models.Reservation{})
 	//change this value to true in production
@@ -38,6 +59,7 @@ func main() {
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")
+		return err
 	}
 
 	app.TemplateCache = tc
@@ -47,22 +69,5 @@ func main() {
 	handlers.NewHandlers(repo)
 
 	render.NewTemplate(&app)
-
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
-	//http.HandleFunc("/devide", Devide)
-
-	fmt.Println("Starting listining to port ", port)
-	//_ = http.ListenAndServe(port, nil)
-
-	srv := &http.Server{
-		Addr:    port,
-		Handler: routes(&app),
-	}
-
-	err = srv.ListenAndServe()
-
-	if err != nil {
-		log.Fatal(err)
-	}
+	return nil
 }

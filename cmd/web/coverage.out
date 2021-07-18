@@ -1,0 +1,13 @@
+mode: set
+github.com/ArmanurRahman/booking/cmd/web/routes.go:12.49,37.2 18 1
+github.com/ArmanurRahman/booking/cmd/web/main.go:23.13,27.16 2 0
+github.com/ArmanurRahman/booking/cmd/web/main.go:30.2,40.16 4 0
+github.com/ArmanurRahman/booking/cmd/web/main.go:27.16,29.3 1 0
+github.com/ArmanurRahman/booking/cmd/web/main.go:40.16,42.3 1 0
+github.com/ArmanurRahman/booking/cmd/web/main.go:45.18,60.16 10 1
+github.com/ArmanurRahman/booking/cmd/web/main.go:65.2,72.12 6 1
+github.com/ArmanurRahman/booking/cmd/web/main.go:60.16,63.3 2 0
+github.com/ArmanurRahman/booking/cmd/web/middleware.go:10.53,11.71 1 0
+github.com/ArmanurRahman/booking/cmd/web/middleware.go:11.71,14.3 2 0
+github.com/ArmanurRahman/booking/cmd/web/middleware.go:18.45,29.2 3 1
+github.com/ArmanurRahman/booking/cmd/web/middleware.go:32.50,34.2 1 1
