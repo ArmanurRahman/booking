@@ -5,7 +5,10 @@ import (
 	"net/http"
 
 	"github.com/ArmanurRahman/booking/internal/config"
+	"github.com/ArmanurRahman/booking/internal/drivers"
 	"github.com/ArmanurRahman/booking/internal/forms"
+	"github.com/ArmanurRahman/booking/internal/repository"
+	"github.com/ArmanurRahman/booking/internal/repository/dbrepo"
 
 	"github.com/ArmanurRahman/booking/internal/helpers"
 
@@ -19,12 +22,14 @@ var Repo *Repository
 //Repository is the repository type
 type Repository struct {
 	App *config.AppConfig
+	DB  repository.DatabaseRepo
 }
 
 //NewRepo creates a new repository
-func NewRepo(a *config.AppConfig) *Repository {
+func NewRepo(a *config.AppConfig, db *drivers.DB) *Repository {
 	return &Repository{
 		App: a,
+		DB:  dbrepo.NewPostgresRepo(db.SQL, a),
 	}
 }
 
