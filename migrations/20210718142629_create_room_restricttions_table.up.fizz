@@ -1,6 +1,6 @@
 
 sql("
-    create table room_reservations 
+    create table room_restrictions 
     (
         id serial primary key,
         
