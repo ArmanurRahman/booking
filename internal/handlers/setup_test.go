@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"testing"
 	"time"
 
 	"github.com/ArmanurRahman/booking/internal/config"
@@ -24,7 +25,7 @@ var session *scs.SessionManager
 var pathToTemplates = "./../../templates"
 var functions = template.FuncMap{}
 
-func getRoutes() http.Handler {
+func TestMain(m *testing.M) {
 	//what am i put in session
 	gob.Register(models.Reservation{})
 	//change this value to true in production
@@ -53,10 +54,14 @@ func getRoutes() http.Handler {
 	app.ErrorLog = errorLog
 
 	app.UseCache = true
-	repo := NewRepo(&app)
+	repo := NewTestRepo(&app)
 	NewHandlers(repo)
 
-	render.NewTemplate(&app)
+	render.NewRenderer(&app)
+	os.Exit(m.Run())
+}
+
+func getRoutes() http.Handler {
 
 	mux := chi.NewRouter()
 
