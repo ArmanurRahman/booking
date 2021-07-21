@@ -70,7 +70,7 @@ func (m *postgressDBRepo) SearchAvailabilityByDatesByRoomId(start, end time.Time
 	var numRows int
 
 	sql := `select count(id) from room_restrictions 
-			where $1 < end_date and $2 > start_date and room_id = $3`
+			where $1 <= end_date and $2 >= start_date and room_id = $3`
 
 	row := m.DB.QueryRowContext(ctx, sql, start, end, roomId)
 	err := row.Scan(&numRows)

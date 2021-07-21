@@ -186,7 +186,7 @@ func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 
 		StartDate:     reservation.StartDate,
 		EndDate:       reservation.EndDate,
-		RoomID:        reservation.Room.ID,
+		RoomID:        reservation.RoomID,
 		ResevationID:  newReservationId,
 		RestrictionID: 1,
 	}
@@ -245,14 +245,30 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 }
 
 type jsonResponse struct {
-	OK      bool   `json:"ok"`
-	Message string `json:"message"`
+	OK        bool   `json:"ok"`
+	Message   string `json:"message"`
+	RoomId    string `json:"room_id"`
+	StartDate string `json:"start_date"`
+	EndDate   string `json:"end_date"`
 }
 
 func (m *Repository) AvailabilityJson(w http.ResponseWriter, r *http.Request) {
+
+	sd := r.Form.Get("start")
+	ed := r.Form.Get("end")
+	roomId, _ := strconv.Atoi(r.Form.Get("room_id"))
+
+	layout := "2006-01-02"
+	startDate, _ := time.Parse(layout, sd)
+	endDate, _ := time.Parse(layout, ed)
+
+	available, _ := m.DB.SearchAvailabilityByDatesByRoomId(startDate, endDate, roomId)
 	resp := jsonResponse{
-		OK:      true,
-		Message: "Available",
+		OK:        available,
+		Message:   "",
+		RoomId:    strconv.Itoa(roomId),
+		StartDate: sd,
+		EndDate:   ed,
 	}
 
 	out, err := json.MarshalIndent(resp, "", "     ")
@@ -303,4 +319,25 @@ func (m *Repository) ChooseRoom(w http.ResponseWriter, r *http.Request) {
 	res.RoomID = roomId
 	m.App.Session.Put(r.Context(), "reservation", res)
 	http.Redirect(w, r, "/make-reservation", http.StatusSeeOther)
+}
+
+func (m *Repository) BookRoom(w http.ResponseWriter, r *http.Request) {
+	sd := r.URL.Query().Get("s")
+	ed := r.URL.Query().Get("e")
+	roomId, _ := strconv.Atoi(r.URL.Query().Get("id"))
+
+	layout := "2006-01-02"
+	startDate, _ := time.Parse(layout, sd)
+	endDate, _ := time.Parse(layout, ed)
+
+	var reservation models.Reservation
+
+	reservation.RoomID = roomId
+	reservation.StartDate = startDate
+	reservation.EndDate = endDate
+
+	m.App.Session.Put(r.Context(), "reservation", reservation)
+
+	http.Redirect(w, r, "/make-reservation", http.StatusSeeOther)
+
 }
