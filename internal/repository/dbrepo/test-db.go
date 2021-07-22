@@ -44,7 +44,7 @@ func (m *testDBRepo) GetRoomByID(id int) (models.Room, error) {
 	var room models.Room
 
 	if id > 2 {
-		return room, errors.New("Some error")
+		return room, errors.New("some error")
 	}
 	return room, nil
 
@@ -72,5 +72,13 @@ func (m *testDBRepo) AllReservations() ([]models.Reservation, error) {
 	var reservations []models.Reservation
 
 	return reservations, nil
+
+}
+
+func (m *testDBRepo) NewReservations() ([]models.Reservation, error) {
+
+	var reservation []models.Reservation
+
+	return reservation, nil
 
 }
