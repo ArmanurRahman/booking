@@ -3,6 +3,7 @@ package render
 import (
 	"bytes"
 	"errors"
+	"time"
 
 	"fmt"
 	"html/template"
@@ -14,13 +15,19 @@ import (
 	"github.com/justinas/nosurf"
 )
 
-var functions = template.FuncMap{}
+var functions = template.FuncMap{
+	"humanDate": HumanDate,
+}
 
 var app *config.AppConfig
 var pathToTemplates = "./templates"
 
 func NewRenderer(a *config.AppConfig) {
 	app = a
+}
+
+func HumanDate(t time.Time) string {
+	return t.Format("2006-01-02")
 }
 
 func Template(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) error {
