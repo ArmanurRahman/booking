@@ -1,0 +1,1 @@
+sql("alter table reservations drop column process")

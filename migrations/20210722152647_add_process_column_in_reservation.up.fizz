@@ -1,0 +1,3 @@
+sql("
+alter table reservations add column process  int default 0 	
+")
