@@ -387,7 +387,7 @@ func (m *postgressDBRepo) UpdateProcessedForReservation(process, id int) error {
 	defer cancel()
 
 	sql := `update reservations set process=$1 
-			where id=&2
+			where id=$2
 	`
 	_, err := m.DB.ExecContext(ctx, sql, process, id)
 
